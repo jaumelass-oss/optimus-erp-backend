@@ -24,4 +24,9 @@ public class ActivoController {
     public Activo crear(@RequestBody Activo activo) {
         return activoRepository.save(activo);
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        activoRepository.deleteById(id);
+    }
 }
