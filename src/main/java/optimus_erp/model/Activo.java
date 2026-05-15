@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Entity
 @Table (name = "activos")
 @Data
@@ -28,8 +30,17 @@ public class Activo {
 
     @Column(name = "empleado_id")
     private Integer empleadoId;
-}
 
-enum TipoActivo {
-    LAPTOP, PERIFERICO, LICENCIA, SERVIDOR
+    @Column(name = "fecha_entrada")
+    private LocalDate fechaEntrada;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_vendido_id")
+    private Cliente clienteVendido;
+
+    @Column(name = "fecha_venta")
+    private LocalDate fechaVenta;
+
+    @Column(length = 500)
+    private String notas;
 }
